@@ -2,10 +2,10 @@ import pygame
 import sys
 import random
 
-# Initialize PyGame
+
 pygame.init()
 
-# Constants
+
 WIDTH, HEIGHT = 800, 600
 FPS = 60
 WHITE = (255, 255, 255)
@@ -13,14 +13,14 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 
-# Set up display
+
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("PyGame Project")
 
-# Clock
+
 clock = pygame.time.Clock()
 
-# Fonts
+
 font = pygame.font.SysFont("Arial", 36)
 
 def draw_text(text, color, x, y):
@@ -71,7 +71,7 @@ def game_loop():
         if keys[pygame.K_RIGHT] and player.right < WIDTH:
             player.x += 5
 
-        # Update enemies
+        
         for enemy, speed in enemies:
             enemy.y += speed
             if enemy.top > HEIGHT:
@@ -79,17 +79,17 @@ def game_loop():
                 enemies.append(spawn_enemy())
                 score += 1
 
-        # Collision detection
+        
         for enemy, _ in enemies:
             if player.colliderect(enemy):
                 game_over(score)
 
-        # Draw player and enemies
+       
         pygame.draw.rect(screen, BLUE, player)
         for enemy, _ in enemies:
             pygame.draw.rect(screen, RED, enemy)
 
-        # Display score
+       
         draw_text(f"Score: {score}", WHITE, 10, 10)
 
         pygame.display.flip()
